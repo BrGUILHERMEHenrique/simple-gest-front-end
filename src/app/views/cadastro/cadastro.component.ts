@@ -10,9 +10,9 @@ import { UsuarioDtoCadastro } from 'src/models/DTO/UsuarioDtoCadastro.model';
 })
 export class CadastroComponent implements OnInit {
 
-  nome:String;
-  email:String;
-  senha:String;
+  nome:String = '';
+  email:String = '';
+  senha:String = '';
   constructor(
   ) { }
 
