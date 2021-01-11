@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   contas:any[] = [];
   retiradas:any[] = [];
 
-  pieChartData: SingleDataSet = [];
+  pieChartData: ChartDataSets[] = [];
 
   pieChartLabels: Label[] = [];
 
