@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="container-form">
+        <div class="container-logo">
+            <img src="../../../assets/m.png" alt="Sg SimpleGest" class="logo">
+            <h1>SimpleGest</h1>
+            <p>Sua gestão de forma simplificada</p>
+        </div>
+        <h1>Cadsastro</h1>
+        <div class="form">
+            <input type="text" class="nome" placeholder="Nome" [(ngModel)] = "nome">
+            <input type="text" class="email" placeholder="E-mail" [(ngModel)] = "email">
+            <input type="text" class="senha" placeholder="Senha" [(ngModel)] = "senha">
+            <button class="entrar"(click)="cadastrarNovoUsuario()">Entar</button>
+        </div>
+    </div>
+</div>
