@@ -1,0 +1,10 @@
+<div class="container">
+    <p>Cadastrar nova retirada</p>
+    <input type="text" class="descricao" [(ngModel)]="descricao" placeholder="Descrição" >
+    <select name="tipo-gasto" id="tipo-gast" class="tipoGasto" [(ngModel)]="tipoGasto" >
+        <option value="" selected="selected">Tipo de retirada</option>
+        <option *ngFor= "let tipo of listaTiposGastos" (value)="tipo">{{ tipo }}</option>
+    </select>
+    <input type="number" class="quantia" [(ngModel)]="quantia" placeholder="Quantia" min="0">
+    <button (click)="cadastrarNovaRetirada()">Salvar</button>
+</div>
