@@ -1,0 +1,21 @@
+import { Injectable } from '@angular/core';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthProviderGuard implements CanActivate {
+  constructor (private router: Router) { }
+  canActivate(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): boolean{
+    const token = window.localStorage.getItem("nekot");
+      if(token) {
+        return true;
+      } else {
+        this.router.navigate(['login']);
+        return false;
+      }
+  }
+}

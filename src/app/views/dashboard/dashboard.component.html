@@ -1,27 +1,23 @@
 <app-header [title]="title"></app-header>
-<div class="container card">
-    <h1 class="money">R$20000</h1>
+<div class="container">
+        <h1 class="money">R$20000</h1>
+        <div class="retiradas card">
+            Retiradas:
+            <button (click)="openDialogRetirada()">Nova Retirada</button>
+            <div class="retirada" *ngFor="let retirada of retiradas">
+                {{retirada.descricao}} : R${{ retirada.quantia }}
+            </div>
+        </div>
+        <div class="contas card">
+            contas:
+            <button (click)="openDialogConta()">Nova conta</button>
+            <div class="conta" *ngFor="let conta of contas">
+                {{ conta.descricao }} : R${{ conta.preco }}
+            </div>
+        </div>
     <div class="chart">
-        <canvas baseChart 
-            [datasets]="pieChartData" 
-            [labels]="pieChartLabels" 
-            [options]="pieChartOptions"
-            [legend]="pieChartLegend" 
-            [chartType]="pieChartType"
-            [plugins]="pieChartPlugins">
+        <canvas baseChart [datasets]="pieChartData" [labels]="pieChartLabels" [options]="pieChartOptions"
+            [legend]="pieChartLegend" [chartType]="pieChartType" [plugins]="pieChartPlugins">
         </canvas>
-    </div>
-
-    <div class="retiradas card">
-        Retiradas:
-        <div class="retirada" *ngFor="let retirada of retiradas">
-            {{retirada.descricao}} : R${{ retirada.quantia }}
-        </div>
-    </div>
-    <div class="contas" >
-        contas:
-        <div class="conta" *ngFor="let conta of contas">
-            {{ conta.descricao }} : R${{ conta.preco }}
-        </div>
     </div>
 </div>

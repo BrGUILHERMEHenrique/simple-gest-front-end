@@ -1,0 +1,38 @@
+@widthTotal: 100%;
+@heightTotal: 100%;
+@cor-azul: #208BC5;
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 200px;
+    mat-form-field{
+        input {
+            height: auto;
+            border: 0;
+        }
+    }
+    mat-datepicker-toggle, mat-datepicker, mat-form-field {
+        overflow: hidden;
+    }
+    p {
+        font-size: 17px;
+        color: #3a3a3a;
+    }
+    input, select{
+        border-bottom: 1px solid @cor-azul;
+        height: 40px;
+        width: @widthTotal;
+    }
+
+    button {
+        margin-top: 4%;
+        color: #fff;
+        background-color: @cor-azul;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+}

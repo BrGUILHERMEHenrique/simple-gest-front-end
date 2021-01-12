@@ -1,0 +1,16 @@
+<div class="container">
+    <p>Cadastrar nova conta</p>
+    <input type="text" class="descricao" placeholder="Descrição" [(ngModel)]="descricao">
+    <mat-form-field>
+        <mat-label>Data de vencimento</mat-label>
+        <input  [(ngModel)]="dataVencimento" matInput [matDatepicker]="myPicker"  placeholder="date">
+        <mat-datepicker-toggle  matSuffix [for]="myPicker"></mat-datepicker-toggle>
+        <mat-datepicker #myPicker></mat-datepicker>
+    </mat-form-field>
+    <select name="tipo-gasto" id="tipo-gasto" class="tipo-gasto" [(ngModel)]="tipoGasto">
+        <option value="" selected="selected">Tipo de Gasto</option>
+        <option *ngFor="let tipo of listaTiposGastos" (value)="tipo" >{{ tipo }}</option>
+    </select>
+    <input type="number" class="preco" placeholder="Preço" [(ngModel)]="preco">
+    <button (click)="cadastrarNovaConta()"> Cadastrar </button>
+</div>
