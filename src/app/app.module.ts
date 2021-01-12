@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { MatNativeDateModule } from '@angular/material/core';
+import { DialogMontanteComponent } from './components/dialog-montante/dialog-montante.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     CadastroComponent,
     DialogContaComponent,
     DialogRetiradaComponent,
-    DatepickerComponent
+    DatepickerComponent,
+    DialogMontanteComponent
   ],
   imports: [
     BrowserModule,

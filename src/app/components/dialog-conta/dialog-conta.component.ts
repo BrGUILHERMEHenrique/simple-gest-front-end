@@ -21,8 +21,8 @@ export class DialogContaComponent implements OnInit {
   @Input() tipoGasto:String = '';
   @Input() preco:Number = 0;
   usuarioSalvo = window.localStorage.getItem('usuario');
-  // usuario:Usuario = JSON.parse(this.usuarioSalvo !== null ? this.usuarioSalvo : '');
-  usuario:Usuario = new Usuario(1, "Guilherme", "açlfgha@gmail.com", "senha");
+  usuario:Usuario = JSON.parse(this.usuarioSalvo !== null ? this.usuarioSalvo : '');
+  // usuario:Usuario = new Usuario(1, "Guilherme", "açlfgha@gmail.com", "senha", 2000);
   listaTiposGastos:Array<String> = [];
   constructor(
     ) { }

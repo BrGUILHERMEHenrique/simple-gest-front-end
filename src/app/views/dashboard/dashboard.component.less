@@ -1,30 +1,46 @@
 @cor-azul: #208BC5;
 
 .container {
-    width: 100%;
-    height: 100%;
-    display        : flex;
+    width          : 100%;
+    height         : 100%;
+    display        : flexbox;
     flex-direction : row;
-    align-items    : center;
+    flex-wrap      : wrap;
     justify-content: space-around;
+
+    .money {
+        float: left;
+    }
 }
- button {
-     color: #fff;
-     background-color: @cor-azul;
-     height: 40px;
-     width: 50%;
-     float: right;
- }
+.adicionar {
+    
+}
+.verde {
+    color: lightgreen;
+}
+
+.vermelho {
+    color: lightcoral;
+}
+//  button {
+//      color: #fff;
+//      background-color: @cor-azul;
+//      height: 40px;
+//      width: 50%;
+//      float: right;
+//  }
+
 .card {
+    float          : left;
     display        : flex;
     flex-direction : row;
     justify-content: center;
     align-items    : center;
     flex-wrap      : wrap;
-    width          : 20%;
+    width          : 15%;
     height         : 200px;
-    border-radius: 5px;
-    box-shadow: 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius  : 5px;
+    box-shadow     : 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .retiradas {
@@ -33,6 +49,9 @@
 
     .retirada {
         background-color: rgba(0, 0, 0, 0.1);
+        margin-top      : 5px;
+        width           : 100%;
+        height          : 20px;
     }
 }
 
@@ -43,5 +62,7 @@
     .conta {
         background-color: rgba(0, 0, 0, 0.1);
         margin-top      : 5px;
+        width           : 100%;
+        height          : 20px;
     }
 }
