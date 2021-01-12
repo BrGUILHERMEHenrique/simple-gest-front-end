@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthProviderGuard } from 'src/app/shared/auth-provider.guard';
 
 import { DashboardComponent } from 'src/app/views/dashboard/dashboard.component';
 import { LoginComponent } from 'src/app/views/login/login.component';
@@ -7,11 +8,12 @@ import { CadastroComponent } from 'src/app/views/cadastro/cadastro.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
-    component: DashboardComponent
+    path: '',
+    component: DashboardComponent,
+    canActivate: [AuthProviderGuard]
   },
   {
-    path: '',
+    path: 'login',
     component: LoginComponent
   },
   {

@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,8 @@ import { LoginComponent } from './views/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
+import { DialogContaComponent } from './components/dialog-conta/dialog-conta.component';
+import { DialogRetiradaComponent } from './components/dialog-retirada/dialog-retirada.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +22,16 @@ import { CadastroComponent } from './views/cadastro/cadastro.component';
     LoginComponent,
     HeaderComponent,
     FooterComponent,
-    CadastroComponent
+    CadastroComponent,
+    DialogContaComponent,
+    DialogRetiradaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatDialogModule,
     ChartsModule
   ],
   providers: [],
