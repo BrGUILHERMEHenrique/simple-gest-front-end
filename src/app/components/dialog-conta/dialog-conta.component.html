@@ -1,1 +1,9 @@
-<p>dialog-conta works!</p>
+<div class="container">
+    <p>Cadastrar nova conta</p>
+    <input type="text" class="descricao" placeholder="Descrição">
+    <input type="text" class="data-vencimento" placeholder="Data de vencimento">
+    <select name="tipo-gasto" id="tipo-gasto" class="tipo-gasto">
+        <option *ngFor="let tipo of listaTiposGastos" (value)="tipo">{{ tipo }}</option>
+    </select>
+    <input type="number" class="preco" placeholder="Preço">
+</div>
