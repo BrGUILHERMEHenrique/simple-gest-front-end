@@ -14,6 +14,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CadastroComponent } from './views/cadastro/cadastro.component';
 import { DialogContaComponent } from './components/dialog-conta/dialog-conta.component';
 import { DialogRetiradaComponent } from './components/dialog-retirada/dialog-retirada.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { DatepickerComponent } from './components/datepicker/datepicker.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,8 @@ import { DialogRetiradaComponent } from './components/dialog-retirada/dialog-ret
     FooterComponent,
     CadastroComponent,
     DialogContaComponent,
-    DialogRetiradaComponent
+    DialogRetiradaComponent,
+    DatepickerComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +37,9 @@ import { DialogRetiradaComponent } from './components/dialog-retirada/dialog-ret
     BrowserAnimationsModule,
     FormsModule,
     MatDialogModule,
+    MatInputModule, 
+    MatDatepickerModule,
+    MatNativeDateModule,
     ChartsModule
   ],
   providers: [],

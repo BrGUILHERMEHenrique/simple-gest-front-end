@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import api from 'src/services/api';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
+import { Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogContaComponent } from 'src/app/components/dialog-conta/dialog-conta.component';
 import { DialogRetiradaComponent } from 'src/app/components/dialog-retirada/dialog-retirada.component';
@@ -29,12 +29,18 @@ export class DashboardComponent implements OnInit {
   pieChartPlugins = [];
   pieChartType: ChartType = 'line';
 
+  constructor(public dialog: MatDialog, private ref:ChangeDetectorRef) {
+    monkeyPatchChartJsTooltip();
+    monkeyPatchChartJsLegend();
+   }
+
   openDialogRetirada(): void {
     let dialogRef = this.dialog.open(DialogRetiradaComponent, {
-
+      
     });
 
     dialogRef.afterClosed().subscribe(res => {
+      this.getRetiradas();
       console.log("Dialog de Retirada fechado");
     })
   }
@@ -44,6 +50,7 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(res => {
+      this.getContas();
       console.log("Dialog fechado");
     });
   }
@@ -78,9 +85,6 @@ export class DashboardComponent implements OnInit {
     console.log(this.retiradas);
     console.log(this.pieChartData);
   }
-  constructor(public dialog: MatDialog) {
-    monkeyPatchChartJsTooltip();
-    monkeyPatchChartJsLegend();
-   }
+
 
 }
