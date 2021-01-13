@@ -1,6 +1,6 @@
 <app-header [title]="title"></app-header>
 <div class="container">
-        <h1 [ngStyle]="{ 'background-color': (usuario.saldo > 0) ? green : red }">Saldo atual: R${{ usuario.saldo }}</h1>
+        <h1>Saldo atual: R${{ usuario.saldo }}</h1>
         <button class="adicionar" (click)="abrirDialogMontante()">Adicionar dinheiro</button>
         <div class="dados">
         <div class="retiradas card">
@@ -8,7 +8,7 @@
             <button (click)="openDialogRetirada()">Nova Retirada</button>
             <div class="retirada" *ngFor="let retirada of retiradas">
                 {{retirada.descricao}} : R${{ retirada.quantia }}
-                
+                <button class="edicao-retirada" (click)="abrirDialogEdicaoRetirada(retirada.id)"></button>
             </div>
         </div>
         <div class="contas card">
@@ -17,12 +17,9 @@
             <div class="conta" *ngFor="let conta of contas">
                 {{ conta.descricao }} : R${{ conta.preco }}
                 <button class="pagar-conta" (click)="pagarConta(conta.id)" [disabled]="conta.paga ? true : false">Pagar</button>
+                <button class="excluir-conta" (click)="apgarConta(conta.id)">Apagar</button>
             </div>
         </div>
-    </div>
-    <div class="chart">
-        <canvas baseChart [datasets]="pieChartData" [labels]="pieChartLabels" [options]="pieChartOptions"
-            [legend]="pieChartLegend" [chartType]="pieChartType" [plugins]="pieChartPlugins">
-        </canvas>
+        <app-grafico [pieChartData]="data" [pieChartLabels]="labels"></app-grafico>
     </div>
 </div>

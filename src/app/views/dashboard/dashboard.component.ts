@@ -1,12 +1,12 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import api from 'src/services/api';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
-import { MatDialog } from '@angular/material/dialog';
+
 import { DialogContaComponent } from 'src/app/components/dialog-conta/dialog-conta.component';
 import { DialogRetiradaComponent } from 'src/app/components/dialog-retirada/dialog-retirada.component';
 import { DialogMontanteComponent } from 'src/app/components/dialog-montante/dialog-montante.component';
 import { Usuario } from 'src/models/Usuario.model';
+import { DialogEdicaoRetiradaComponent } from 'src/app/components/dialog-edicao-retirada/dialog-edicao-retirada.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,22 +22,48 @@ export class DashboardComponent implements OnInit {
   title = 'Dasboard';
   contas:any[] = [];
   retiradas:any[] = [];
+  data:any[] = [];
+  labels:any[] = [];
+  tipos:string[] = [];
 
-  pieChartData: ChartDataSets[] = [];
+  constructor(public dialog: MatDialog) {
 
-  pieChartLabels: Label[] = [];
+   }
 
-  pieChartOptions: ChartOptions = {
-    responsive: true
-  };
+   fazerCalculos(): void {
+     let listinha: {tipo:string, quantia:number}[] = [];
+     let modelo = {
+       tipo: '',
+       quantia: 0,
+     };
+    for(let tipo of this.tipos) {
+     modelo = {
+       ...modelo,
+       tipo : tipo,
+     }
+     listinha.push(modelo);
+    } 
 
-  pieChartLegend = true;
-  pieChartPlugins = [];
-  pieChartType: ChartType = 'line';
+    for(let i = 0; i < this.retiradas.length; i++) {
+      for(let j = 0; j < listinha.length; j++) {
+        if(this.retiradas[i].tipoGasto === listinha[j].tipo) {
+          listinha[j].quantia += this.retiradas[i].quantia;
+        } 
+      }
+    }
+    this.labels = listinha.map(mod => mod.tipo);
+    this.data = listinha.map(mod => ((mod.quantia * listinha.length)/100));
+      console.log("listinha: ", listinha);
+    }
+ 
+   abrirDialogEdicaoRetirada(_id:Number): void {
+     let dialogRef = this.dialog.open(DialogEdicaoRetiradaComponent, {
 
-  constructor(public dialog: MatDialog, private ref:ChangeDetectorRef) {
-    monkeyPatchChartJsTooltip();
-    monkeyPatchChartJsLegend();
+     });
+     dialogRef.componentInstance.id = _id;
+     dialogRef.afterClosed().subscribe(res => {
+       this.getRetiradas();
+     })
    }
 
   openDialogRetirada(): void {
@@ -110,24 +136,32 @@ export class DashboardComponent implements OnInit {
   async getRetiradas() {
     let response;
     try {
-      response = await api.get('retirar/1');
+      response = await api.get(`/retiradas/${this.usuario.id}`);
+      console.log(response.data);
       this.retiradas = response.data;
+      // this.labels = response.data.map((retirada: { descricao: any; }) => retirada.descricao);
+      // this.data = response.data.map((retirada: { quantia: any; }) => retirada.quantia);
+      this.fazerCalculos();
     } catch (error) {
       console.log(error);
     } 
   };
 
-  gerarGrafico() {
-    this.pieChartData = this.retiradas.map(retirada => retirada.quantia);
-    this.pieChartLabels = this.retiradas.map(retirada => retirada.tipoGasto);
-  }
-  ngOnInit(): void {
-    this.getContas();
-    this.getRetiradas();
-    this.gerarGrafico();
-    console.log(this.retiradas);
-    console.log(this.pieChartData);
+  async carregarTipos():Promise<void> {
+    try {
+      let response = await api.get('/tipo');
+      this.tipos = response.data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
+  
+  ngOnInit(): void {
+    this.getContas();
+    this.carregarTipos();
+    this.getRetiradas();
+    this.carregarDadosUsuario();
+  }
 
 }
