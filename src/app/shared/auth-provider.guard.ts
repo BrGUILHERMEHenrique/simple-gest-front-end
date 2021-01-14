@@ -8,7 +8,7 @@ export class AuthProviderGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean{
-    const token = window.localStorage.getItem("nekot");
+    const token = window.localStorage.getItem('usuario');
       if(token) {
         return true;
       } else {
