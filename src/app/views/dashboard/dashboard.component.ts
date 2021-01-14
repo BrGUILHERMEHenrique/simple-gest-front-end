@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit {
      }
      listinha.push(modelo);
     } 
-
+    //Verifica os dados da lista de retiradas para somar as quantias
     for(let i = 0; i < this.retiradas.length; i++) {
       for(let j = 0; j < listinha.length; j++) {
         if(this.retiradas[i].tipoGasto === listinha[j].tipo) {
@@ -51,8 +51,17 @@ export class DashboardComponent implements OnInit {
         } 
       }
     }
+
+    //verifica os dados da lista de contas para somar as quantias
+    for(let i = 0; i < this.contas.length; i++) {
+      for(let j = 0; j < listinha.length; j++) {
+        if(this.contas[i].tipoGasto === listinha[j].tipo) {
+          listinha[j].quantia += this.contas[i].preco;
+        } 
+      }
+    }
     this.labels = listinha.map(mod => mod.tipo);
-    this.data = listinha.map(mod => ((mod.quantia * listinha.length)/100));
+    this.data = listinha.map(mod => mod.quantia);
       console.log("listinha: ", listinha);
     }
  
@@ -99,6 +108,26 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  async apagarConta(id:Number): Promise<void> {
+    try {
+      const response = await api.delete(`/contas/apagar/${id}`);
+      alert(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.getContas();
+    }
+  }
+  async apagarRetirada(id:Number): Promise<void> {
+    try {
+      const response = await api.delete(`/retiradas/apagar/${id}`);
+      alert(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.getRetiradas();
+    }
+  }
   async pagarConta(id:Number): Promise<void> {
     let modeloConta = {
       idConta: id,
@@ -139,8 +168,6 @@ export class DashboardComponent implements OnInit {
       response = await api.get(`/retiradas/${this.usuario.id}`);
       console.log(response.data);
       this.retiradas = response.data;
-      // this.labels = response.data.map((retirada: { descricao: any; }) => retirada.descricao);
-      // this.data = response.data.map((retirada: { quantia: any; }) => retirada.quantia);
       this.fazerCalculos();
     } catch (error) {
       console.log(error);

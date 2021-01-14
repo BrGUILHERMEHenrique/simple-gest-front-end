@@ -19,6 +19,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DatepickerComponent } from './components/datepicker/datepicker.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DialogMontanteComponent } from './components/dialog-montante/dialog-montante.component';
+import { DialogEdicaoRetiradaComponent } from './components/dialog-edicao-retirada/dialog-edicao-retirada.component';
+import { GraficoComponent } from './components/grafico/grafico.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { DialogMontanteComponent } from './components/dialog-montante/dialog-mon
     DialogContaComponent,
     DialogRetiradaComponent,
     DatepickerComponent,
-    DialogMontanteComponent
+    DialogMontanteComponent,
+    DialogEdicaoRetiradaComponent,
+    GraficoComponent
   ],
   imports: [
     BrowserModule,

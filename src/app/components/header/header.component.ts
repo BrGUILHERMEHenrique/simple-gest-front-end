@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Usuario } from 'src/models/Usuario.model';
 
 @Component({
   selector: 'app-header',
@@ -6,11 +8,18 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./header.component.less']
 })
 export class HeaderComponent implements OnInit {
+  usuarioSalvo = window.localStorage.getItem('usuario');
+  usuario:Usuario = JSON.parse(this.usuarioSalvo !== null ? this.usuarioSalvo : '');
 
-  @Input() nome: String = '';
+  nome: String = this.usuario.nome;
 
-  usuario:any;
-  constructor() {
+  logout(): void {
+    window.localStorage.removeItem('usuario');
+    this.router.navigate(['login'])
+  }
+  constructor(
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
