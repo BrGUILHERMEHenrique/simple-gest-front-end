@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DialogMontanteComponent } from './components/dialog-montante/dialog-montante.component';
 import { DialogEdicaoRetiradaComponent } from './components/dialog-edicao-retirada/dialog-edicao-retirada.component';
 import { GraficoComponent } from './components/grafico/grafico.component';
+import { DespesasComponent } from './views/despesas/despesas.component';
+import { InvestimentosComponent } from './views/investimentos/investimentos.component';
+import { CotacaoComponent } from './views/cotacao/cotacao.component';
+import { RoutesusUsuarioComponent } from './views/routesus-usuario/routesus-usuario.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,11 @@ import { GraficoComponent } from './components/grafico/grafico.component';
     DatepickerComponent,
     DialogMontanteComponent,
     DialogEdicaoRetiradaComponent,
-    GraficoComponent
+    GraficoComponent,
+    DespesasComponent,
+    InvestimentosComponent,
+    CotacaoComponent,
+    RoutesusUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +55,7 @@ import { GraficoComponent } from './components/grafico/grafico.component';
     MatInputModule, 
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTableModule,
     ChartsModule
   ],
   providers: [],
