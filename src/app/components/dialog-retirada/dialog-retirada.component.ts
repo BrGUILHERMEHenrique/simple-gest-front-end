@@ -16,8 +16,8 @@ export class DialogRetiradaComponent implements OnInit {
   @Input() quantia:Number = 0;
 
   usuarioSalvo = window.localStorage.getItem('usuario');
-  // usuario:Usuario = JSON.parse(this.usuarioSalvo !== null ? this.usuarioSalvo : '');
-  usuario:Usuario = new Usuario(1, "Guilherme", "açlfgha@gmail.com", "senha");
+  usuario:Usuario = JSON.parse(this.usuarioSalvo !== null ? this.usuarioSalvo : '');
+  // usuario:Usuario = new Usuario(1, "Guilherme", "açlfgha@gmail.com", "senha", 2000);
   listaTiposGastos:Array<String> = [];
 
   constructor() { }
@@ -34,7 +34,7 @@ export class DialogRetiradaComponent implements OnInit {
   async cadastrarNovaRetirada() :Promise<void> {
     let retirada:RetiradaDto = new RetiradaDto(this.descricao, this.tipoGasto, this.quantia, this.usuario.id)
     try {
-      await api.post('/retirar', retirada);
+      await api.post('/retiradas/retirar', retirada);
       console.log("Retirada: ", retirada)
       console.log('Funcionando retirada');
     } catch (error) {

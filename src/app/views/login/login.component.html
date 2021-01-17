@@ -7,9 +7,10 @@
         </div>
         <h1>Login</h1>
         <div class="form">
-        <input type="text" class="email" placeholder="E-mail" >
-        <input type="text" class="senha" placeholder="Senha" >
-        <button class="entrar">Entar</button>
+        <input type="text" class="email" placeholder="E-mail" [(ngModel)]="email">
+        <input type="password" class="senha" placeholder="Senha" [(ngModel)]="senha">
+        <button class="entrar" (click)="fazerLogin()">Entar</button>
     </div>
+    <a routerLink="/cadastro">Fazer cadastro</a>
 </div>
 </div>

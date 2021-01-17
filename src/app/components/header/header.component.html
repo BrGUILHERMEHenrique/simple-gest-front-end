@@ -1,4 +1,7 @@
 <div class="container">
-    <img src="../../../assets/logo-alterdata.png" alt="Alterdata Software">
-    <h1>{{ nome }}</h1>
+    <img src="../../../assets/logo-alterdata.png" alt="Alterdata Software" routerLink="/">
+    <button class="btn-header" routerLink="/despesas">Despesas</button>
+    <button class="btn-header" routerLink="/investimentos">Investimentos</button>
+    <button class="btn-header" routerLink="/cotacao">Cotação</button>
+    <button (click)="logout()" class="btn-header">Sair</button>
 </div>
