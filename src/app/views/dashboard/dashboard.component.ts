@@ -122,7 +122,7 @@ export class DashboardComponent implements OnInit {
       console.log("Dialog de Retirada fechado");
     })
   }
-  openDialogConta(): void {
+  abrirDialogConta(): void {
     let dialogRef = this.dialog.open(DialogContaComponent, {
 
     });
@@ -164,6 +164,16 @@ export class DashboardComponent implements OnInit {
       this.getRetiradas();
     }
   };
+
+  async apagarEntrada(id:number) :Promise<void> {
+    try {
+      let response = await api.delete(`entradas/apagar/${id}`);
+      alert(response.data);
+      this.carregarEntradas();
+    } catch (error) {
+      console.log(error);
+    }
+  }
   async pagarConta(id: Number): Promise<void> {
     let modeloConta = {
       idConta: id,
@@ -194,7 +204,6 @@ export class DashboardComponent implements OnInit {
     try {
       let response = await api.get('contas/1')
       this.contas = response.data;
-      this.fazerCalculosRetiradas();
     } catch (error) {
       console.log(error)
     }
@@ -240,6 +249,17 @@ export class DashboardComponent implements OnInit {
     }
   };
 
+  async carregarDadosRetiradaConta(): Promise<void> {
+    try{
+      await this.getRetiradas();
+      await this.getContas();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.fazerCalculosRetiradas();
+    }
+  }
+
   formatarData(value: string): String {
     const data = new Date(value);
     return `${data.getDate()}/${data.getMonth() + 1}/${data.getFullYear()}`
@@ -247,13 +267,11 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log('rmail: ', this.email);
+    this.carregarDadosUsuario();
     this.carregarTipos();
     this.carregarTiposEntrada();
-    this.getRetiradas();
-    this.getContas();
+    this.carregarDadosRetiradaConta();
     this.carregarEntradas();
-    this.carregarDadosUsuario();
   }
 
 }

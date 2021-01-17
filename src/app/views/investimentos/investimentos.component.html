@@ -19,10 +19,10 @@
             <ng-container matColumnDef="acoes">
                 <th mat-header-cell *matHeaderCellDef> Ações </th>
                 <td mat-cell *matCellDef="let element">
-                    <button (click)="abrirDialogPorcentagem(element.id)">Mostrar porcentagem</button>
-                    <button (click)="abrirDialogEdicaoLucro(element.id)">Atualizar lucro</button>
-                    <button (click)="abrirDialogEdicaoDescricao(element.id)">Atualizar Descricao</button>
-                    <button (click)="apagarInvestimento(element.id)">Apagar</button>
+                    <button class="adicionar" (click)="abrirDialogPorcentagem(element.id)">Mostrar porcentagem</button>
+                    <button class="editar" (click)="abrirDialogEdicaoLucro(element.id)">Atualizar lucro</button>
+                    <button class="editar" (click)="abrirDialogEdicaoDescricao(element.id)">Atualizar Descricao</button>
+                    <button class="apagar" (click)="apagarInvestimento(element.id)">Apagar</button>
                 </td>
             </ng-container>
     

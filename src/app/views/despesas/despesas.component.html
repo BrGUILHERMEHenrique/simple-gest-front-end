@@ -16,8 +16,8 @@
             <ng-container matColumnDef="acoes">
                 <th mat-header-cell *matHeaderCellDef>Ações</th>
                 <td mat-cell *matCellDef="let element">
-                    <button (click)="abrirDialogEdicaoFixa(element.id)">Editar</button>
-                    <button (click)="apagarDespesaFixa(element.id)">Apagar</button>
+                    <button class="editar" (click)="abrirDialogEdicaoFixa(element.id)">Editar</button>
+                    <button class="apagar" (click)="apagarDespesaFixa(element.id)">Apagar</button>
                 </td>
             </ng-container>
 
@@ -43,8 +43,8 @@
             <ng-container matColumnDef="acoes">
                 <th mat-header-cell *matHeaderCellDef>Ações</th>
                 <td mat-cell *matCellDef="let element">
-                    <button (click)="abrirDialogEdicaoVariavel(element.id)">Editar</button>
-                    <button (click)="apagarDespesaVariavel(element.id)">Apagar</button>
+                    <button class="editar" (click)="abrirDialogEdicaoVariavel(element.id)">Editar</button>
+                    <button class="apagar" (click)="apagarDespesaVariavel(element.id)">Apagar</button>
                 </td>
             </ng-container>
 

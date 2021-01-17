@@ -66,7 +66,6 @@ export class InvestimentosComponent implements OnInit {
     });
     dialogref.componentInstance.id = id;
     dialogref.afterClosed().subscribe(res => {
-      this.carregarInvestimentos();
     });
   };
 

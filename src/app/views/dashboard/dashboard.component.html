@@ -2,9 +2,13 @@
     <h1>Saldo atual: <p [style]="{'color': usuario.saldo > 0 ? 'green' : 'red'}">R${{ usuario.saldo }}</p>
     </h1>
     <button class="adicionar" (click)="abrirDialogMontante()">Adicionar dinheiro</button>
+    <div class="graficos">
+        <app-grafico  class="grafico" [pieChartData]="dataEntrada" [pieChartLabels]="labelsEntrada"></app-grafico>
+        <app-grafico  class="grafico" [pieChartData]="data" [pieChartLabels]="labels"></app-grafico>
+      </div>
     <div class="dados">
         <div class="contas">
-            <h3>Contas</h3>
+            <h2>Contas</h2>
             <button class="dialog-conta adicionar" (click)="abrirDialogConta()">Adicionar nova conta</button>
             <table mat-table [dataSource]="contas" class="mat-elevation-z8">
                 <ng-container matColumnDef="descricao">
@@ -45,7 +49,7 @@
         </div>
 
         <div class="retiradas">
-            <h3>Retiradas</h3>
+            <h2>Retiradas</h2>
             <button class="adicionar" (click)="openDialogRetirada()">Nova Retirada</button>
             <table mat-table [dataSource]="retiradas" class="mat-elevation-z8">
                 <ng-container matColumnDef="descricao">
@@ -76,7 +80,7 @@
             </table>
         </div>
         <div class="entradas">
-            <h3>Entradas</h3>
+            <h2>Entradas</h2>
             <table mat-table [dataSource]="entradas" class="mat-elevation-z8">
                 <ng-container matColumnDef="descricao">
                     <th mat-header-cell *matHeaderCellDef> Descrição</th>
@@ -95,9 +99,8 @@
 
                 <ng-container matColumnDef="acoes">
                     <th mat-header-cell *matHeaderCellDef>Ações</th>
-                    <td mat-cell *matCellDef="let retirada">
-                        <button class="edicao-retirada editar" (click)="abrirDialogEdicaoRetirada(retirada.id)">Editar</button>
-                        <button class="excluir-retirada apagar" (click)="apagarRetirada(retirada.id)">Apagar</button>
+                    <td mat-cell *matCellDef="let entrada">
+                        <button class="excluir-entrada apagar" (click)="apagarEntrada(entrada.id)">Apagar</button>
                     </td>
                 </ng-container>
 
@@ -106,9 +109,4 @@
             </table>
         </div>
     </div>
-    
-  <div class="graficos">
-    <app-grafico  class="grafico" [pieChartData]="data" [pieChartLabels]="labels"></app-grafico>
-    <app-grafico  class="grafico" [pieChartData]="dataEntrada" [pieChartLabels]="labelsEntrada"></app-grafico>
-  </div>
 </div>
