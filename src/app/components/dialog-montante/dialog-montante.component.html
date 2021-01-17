@@ -1,4 +1,9 @@
-<div class="container">
+<div class="dialog">
+    <input type="text" placeholder="Descrição"[(ngModel)]="descricao">
+    <select name="tipo-entrada" id="tipo-entrada" [(ngModel)]="tipoEntrada">
+        <option value="" selected="selected">Tipo de entrada</option>
+        <option *ngFor="let tipo of tipos" (value)="tipo">{{ tipo }}</option>
+    </select>
     <input type="number" min="0" class="quantia"[(ngModel)]="quantia">
     <button (click)="adicionarMontante()">Adicionar</button>
 </div>

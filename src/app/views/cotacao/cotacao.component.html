@@ -1,1 +1,7 @@
-<p>cotacao works!</p>
+<div class="container">
+    <div class="card" *ngFor="let moeda of moedas">
+        Moeda: {{ moeda.name }}
+        Maior preço: {{ moeda.high }}
+        Menor preço: {{ moeda.low }}
+    </div>
+</div>

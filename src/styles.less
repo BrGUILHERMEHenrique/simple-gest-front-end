@@ -10,3 +10,51 @@
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #fafafa;}
+button {
+    cursor: pointer;
+}
+a {
+    outline: none;
+    text-decoration: none;
+    color: #208BC5;
+}
+
+@widthTotal: 100%;
+@heightTotal: 100%;
+@cor-azul: #208BC5;
+
+.dialog{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 200px;
+    mat-form-field{
+        input {
+            height: auto;
+            border: 0;
+        }
+    }
+    mat-datepicker-toggle, mat-datepicker, mat-form-field {
+        overflow: hidden;
+    }
+    p {
+        font-size: 17px;
+        color: #3a3a3a;
+    }
+    input, select{
+        border-bottom: 1px solid @cor-azul;
+        height: 40px;
+        width: @widthTotal;
+    }
+
+    button {
+        padding: 7px;
+        margin-top: 4%;
+        color: #fff;
+        background-color: @cor-azul;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+}

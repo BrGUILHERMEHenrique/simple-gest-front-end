@@ -26,6 +26,14 @@ import { DespesasComponent } from './views/despesas/despesas.component';
 import { InvestimentosComponent } from './views/investimentos/investimentos.component';
 import { CotacaoComponent } from './views/cotacao/cotacao.component';
 import { RoutesusUsuarioComponent } from './views/routesus-usuario/routesus-usuario.component';
+import { DialogInvestimentoComponent } from './components/dialog-investimento/dialog-investimento.component';
+import { DialogDespesaFixaComponent } from './components/dialog-despesa-fixa/dialog-despesa-fixa.component';
+import { DialogDespesaVariavelComponent } from './components/dialog-despesa-variavel/dialog-despesa-variavel.component';
+import { DialogEdicaoFixaComponent } from './components/dialog-edicao-fixa/dialog-edicao-fixa.component';
+import { DialogEdicaoVariavelComponent } from './components/dialog-edicao-variavel/dialog-edicao-variavel.component';
+import { DialogEdicaoLucroInvestimentoComponent } from './components/dialog-edicao-lucro-investimento/dialog-edicao-lucro-investimento.component';
+import { DialogEdicaoDescricaoInvestimentoComponent } from './components/dialog-edicao-descricao-investimento/dialog-edicao-descricao-investimento.component';
+import { DialogPorcentagemComponent } from './components/dialog-porcentagem/dialog-porcentagem.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +52,15 @@ import { RoutesusUsuarioComponent } from './views/routesus-usuario/routesus-usua
     DespesasComponent,
     InvestimentosComponent,
     CotacaoComponent,
-    RoutesusUsuarioComponent
+    RoutesusUsuarioComponent,
+    DialogInvestimentoComponent,
+    DialogDespesaFixaComponent,
+    DialogDespesaVariavelComponent,
+    DialogEdicaoFixaComponent,
+    DialogEdicaoVariavelComponent,
+    DialogEdicaoLucroInvestimentoComponent,
+    DialogEdicaoDescricaoInvestimentoComponent,
+    DialogPorcentagemComponent
   ],
   imports: [
     BrowserModule,

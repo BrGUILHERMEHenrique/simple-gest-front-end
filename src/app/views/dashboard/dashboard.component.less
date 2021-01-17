@@ -1,48 +1,58 @@
 @cor-azul: #208BC5;
 
 .container {
-    width          : 100%;
-    height         : 100%;
+    width : 100%;
+    height: 100%;
+    
 
 }
 
+.dados {
+    width : 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
 table {
+    width: 700px;
     margin-top: 10px;
 }
 
 .adicionar {
     background-color: @cor-azul;
-    color: #fff;
-    height: 40px;
-    margin-left: 30px;
-    padding: 5px;
+    color           : #fff;
+    height          : 40px;
+    margin-left     : 30px;
+    padding         : 5px;
 }
 
 .editar {
     background-color: @cor-azul;
-    color: #fff;
-    padding: 5px;
-    width: 50%;
+    color           : #fff;
+    padding         : 5px;
+    width           : 50%;
 }
 
 
 .apagar {
     background-color: rgba(0, 0, 0, 0.1);
-    color: #3a3a3a;
-    padding: 5px;
-    width: 50%;
+    color           : #3a3a3a;
+    padding         : 5px;
+    width           : 50%;
 }
 
 .pagar {
     background-color: @cor-azul;
-    color: #fff;
-    padding: 5px;
-    width: 50%;
+    color           : #fff;
+    padding         : 5px;
+    width           : 50%;
 }
 
-table {
-    width: 50%;
-}
+
 .verde {
     color: lightgreen;
 }
@@ -50,29 +60,10 @@ table {
 .vermelho {
     color: lightcoral;
 }
-//  button {
-//      color: #fff;
-//      background-color: @cor-azul;
-//      height: 40px;
-//      width: 50%;
-//      float: right;
-//  }
 
-.card {
-    float          : left;
-    display        : flex;
-    flex-direction : row;
-    justify-content: center;
-    align-items    : center;
-    flex-wrap      : wrap;
-    width          : 25%;
-    height         : 200px;
-    border-radius  : 5px;
-    box-shadow     : 5px 10px rgba(0, 0, 0, 0.1);
-}
 
 .retiradas {
-    margin-top      : 50px;
+    margin-top: 50px;
 
     .retirada {
         background-color: rgba(0, 0, 0, 0.1);
@@ -83,12 +74,24 @@ table {
 }
 
 .contas {
-    margin-top      : 50px;
+    margin-top: 50px;
 
     .conta {
         background-color: rgba(0, 0, 0, 0.1);
         margin-top      : 5px;
         width           : 100%;
         height          : 20px;
+    }
+}
+
+.graficos {
+    width: 100%;
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    app-grafico {
+        width: 100%;
+        height: 100%;
     }
 }
