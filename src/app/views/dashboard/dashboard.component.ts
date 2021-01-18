@@ -202,7 +202,7 @@ export class DashboardComponent implements OnInit {
 
   async getContas() {
     try {
-      let response = await api.get('contas/1')
+      let response = await api.get(`/contas/${this.usuario.id}`)
       this.contas = response.data;
     } catch (error) {
       console.log(error)

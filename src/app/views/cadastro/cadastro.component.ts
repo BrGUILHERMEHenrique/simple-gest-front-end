@@ -22,9 +22,10 @@ export class CadastroComponent implements OnInit {
   async cadastrarNovoUsuario() {
     try {
       let usuario = new UsuarioDtoCadastro(this.nome, this.email, this.senha);
-      await api.post('/usuarios/criar', usuario);
-      this.router.navigate(['login']);
-      alert("Faça o seu primeiro login para validar sua conta!");
+      let response = await api.post('/usuarios/criar', usuario);
+      window.localStorage.setItem('email', JSON.stringify(atob(response.data.split('.')[1])));
+      window.localStorage.setItem('94a08da1fecbb6e8b46990538c7b50b2', JSON.stringify(response.data));
+      this.router.navigate(['']);
     } catch (error) {
       console.log(error);
     }
