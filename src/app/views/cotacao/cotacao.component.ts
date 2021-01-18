@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import apiCotacao from 'src/services/apiCotacao';
+import { ToastService } from 'angular-toastify';
+
 @Component({
   selector: 'app-cotacao',
   templateUrl: './cotacao.component.html',
@@ -8,17 +10,18 @@ import apiCotacao from 'src/services/apiCotacao';
 export class CotacaoComponent implements OnInit {
 
   moedas:Array<any> = [];
-  constructor() { }
+  constructor(
+    private toastService: ToastService
+  ) { }
 
   async carregarMoedas(): Promise<void> {
     try {
       let response = await apiCotacao.get('all');
-      console.log(response.data);
       for(let i in response.data) {
         this.moedas.push(response.data[i]);
       }
     } catch (error) {
-      console.log(error);
+      this.toastService.error('Não foi possível carregar os dados das cotações');
     }
   }
   ngOnInit(): void {

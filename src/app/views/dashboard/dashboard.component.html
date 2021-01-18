@@ -1,9 +1,13 @@
 <div class="container">
-    <h1>Saldo atual: <p [style]="{'color': usuario.saldo > 0 ? 'green' : 'red'}">R${{ usuario.saldo }}</p>
+    <div class="saudacao">
+    <h1>Seja bem vindo {{ usuario.nome }}!</h1>
+    <h1>Saldo atual é:  <span [style]="{'color': usuario.saldo > 0 ? 'green' : 'red'}">R${{ usuario.saldo }}</span>
     </h1>
     <button class="adicionar" (click)="abrirDialogMontante()">Adicionar dinheiro</button>
+</div>
     <div class="graficos">
         <app-grafico  class="grafico" [pieChartData]="dataEntrada" [pieChartLabels]="labelsEntrada"></app-grafico>
+
         <app-grafico  class="grafico" [pieChartData]="data" [pieChartLabels]="labels"></app-grafico>
       </div>
     <div class="dados">

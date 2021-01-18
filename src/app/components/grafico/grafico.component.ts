@@ -26,14 +26,12 @@ export class GraficoComponent implements OnInit {
     backgroundColor: [
     '#6495ED',
     '#87CEFA',
-    '#008080',
     '#00FF7F',
+    '#008080',
     '#228B22',
-    '#808000',
-    '#DAA520',
-    '#8B4513',
-    '#BC8F8F',
-    '#D2691E',
+    '#FFA500',
+    '#FFD700',
+    '#00BFFF',
     '#DDA0DD']
   }
     

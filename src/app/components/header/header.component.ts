@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/models/Usuario.model';
 
@@ -9,8 +9,36 @@ import { Usuario } from 'src/models/Usuario.model';
 })
 export class HeaderComponent implements OnInit {
   usuarioSalvo = window.localStorage.getItem('usuario');
-  usuario:Usuario = JSON.parse(this.usuarioSalvo !== null ? this.usuarioSalvo : '{}');
+  usuario: Usuario = JSON.parse(this.usuarioSalvo !== null ? this.usuarioSalvo : '{}');
 
+  handlePosition(): void {
+    setTimeout((res) => {
+      console.log(window.location.href);
+      switch (window.location.href) {
+        case 'http://localhost:4200/despesas':
+          document.querySelector('.despesas')?.classList.add('ativo')
+          document.querySelector('.investimentos')?.classList.remove('ativo')
+          document.querySelector('.cotacao')?.classList.remove('ativo')
+          break;
+        case 'http://localhost:4200/investimentos':
+          document.querySelector('.despesas')?.classList.remove('ativo')
+          document.querySelector('.investimentos')?.classList.add('ativo')
+          document.querySelector('.cotacao')?.classList.remove('ativo')
+          break;
+        case 'http://localhost:4200/cotacao':
+          document.querySelector('.despesas')?.classList.remove('ativo')
+          document.querySelector('.investimentos')?.classList.remove('ativo')
+          document.querySelector('.cotacao')?.classList.add('ativo')
+          break;
+        default:
+          document.querySelector('.despesas')?.classList.remove('ativo')
+          document.querySelector('.investimentos')?.classList.remove('ativo')
+          document.querySelector('.cotacao')?.classList.remove('ativo')
+          break;
+      }
+    }, 500)
+
+  }
   logout(): void {
     window.localStorage.removeItem('usuario');
     window.localStorage.removeItem('email');
@@ -23,7 +51,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.usuarioSalvo)
+
   }
 
 }

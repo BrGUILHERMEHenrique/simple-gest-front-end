@@ -2,16 +2,18 @@
 * {
     padding: 0;
     margin: 0;
-    vertical-align: baseline;
     list-style: none;
     border: 0;
-    overflow: auto;
     outline: none;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #fafafa;}
 button {
     cursor: pointer;
+
+    &:hover {
+        opacity: 0.9;
+    }
 }
 a {
     outline: none;
@@ -63,25 +65,45 @@ a {
     background-color: @cor-azul;
     color           : #fff;
     height          : 40px;
-    margin-left     : 30px;
+    margin-left     : 50px;
     padding         : 5px;
-    border-radius: 5px;
+    border-radius: 3px;
+    margin: 5px;
 }
 
 .editar {
     background-color: @cor-azul;
     color           : #fff;
     padding         : 5px;
-    width           : 50%;
+    width           : 45%;
+    border-radius: 3px;
+    margin: 5px;
 }
 
 
 .apagar {
     background-color: rgba(0, 0, 0, 0.1);
-    color           : #3a3a3a;
+    color           : red;
     padding         : 5px;
-    width           : 50%;
+    width           : 45%;
+    border-radius: 3px;
+    margin: 5px;
 }
 button:disabled {
     opacity: 0.1;
+}
+
+table {
+    width     : 90%;
+    margin-top: 10px;
+    padding: 10px;
+    padding-bottom: 0;
+    
+    th.mat-header-cell:last-of-type, td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type{
+        padding: 20px;
+    }
+}
+
+.ativo {
+    border-bottom: 1px solid #208BC5;
 }

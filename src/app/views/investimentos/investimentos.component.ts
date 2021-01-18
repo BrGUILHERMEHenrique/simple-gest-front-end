@@ -1,10 +1,11 @@
-import { APP_ID, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEdicaoDescricaoInvestimentoComponent } from 'src/app/components/dialog-edicao-descricao-investimento/dialog-edicao-descricao-investimento.component';
 import { DialogEdicaoLucroInvestimentoComponent } from 'src/app/components/dialog-edicao-lucro-investimento/dialog-edicao-lucro-investimento.component';
 import { DialogInvestimentoComponent } from 'src/app/components/dialog-investimento/dialog-investimento.component';
 import { DialogPorcentagemComponent } from 'src/app/components/dialog-porcentagem/dialog-porcentagem.component';
 import { Usuario } from 'src/models/Usuario.model';
+import { ToastService } from 'angular-toastify'
 import api from 'src/services/api';
 
 
@@ -19,7 +20,9 @@ export class InvestimentosComponent implements OnInit {
   displayedColumns:Array<string> = ['descricao', 'valorRetirada', 'lucroAtual', 'acoes'];
   usuario:Usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    ) { }
 
   abrirDialogInvestimento(): void {
     let dialogRef = this.dialog.open(DialogInvestimentoComponent, {
@@ -70,7 +73,13 @@ export class InvestimentosComponent implements OnInit {
   };
 
   async apagarInvestimento(id:number): Promise<void> {
-
+    try {
+      let response = await api.delete(`/investimentos/apagar/${id}`);
+      alert(response.data);
+      this.carregarInvestimentos();
+    } catch (error) {
+      alert("Não foi possível excluir o investimento");
+    }
   }
   
   ngOnInit(): void {

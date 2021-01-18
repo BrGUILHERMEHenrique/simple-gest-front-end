@@ -1,13 +1,13 @@
 <div class="container">
-    <div class="variaveis">
-        <h3>Seus investimentos</h3>
-        <button class="dialog-conta adicionar" (click)="abrirDialogInvestimento()">Adicionar nova conta</button>
+    <div class="investimentos">
+        <h2>Seus investimentos</h2>
+        <button class="dialog-conta adicionar" (click)="abrirDialogInvestimento()">Adicionar novo investimento</button>
         <table mat-table [dataSource]="investimentos" class="mat-elevation-z8">
             <ng-container matColumnDef="descricao">
                 <th mat-header-cell *matHeaderCellDef> Descrição</th>
                 <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
             </ng-container>
-    
+
             <ng-container matColumnDef="valorRetirada">
                 <th mat-header-cell *matHeaderCellDef> Quantia investida </th>
                 <td mat-cell *matCellDef="let element"> {{element.valorRetirada}} </td>
@@ -19,14 +19,27 @@
             <ng-container matColumnDef="acoes">
                 <th mat-header-cell *matHeaderCellDef> Ações </th>
                 <td mat-cell *matCellDef="let element">
-                    <button class="adicionar" (click)="abrirDialogPorcentagem(element.id)">Mostrar porcentagem</button>
-                    <button class="editar" (click)="abrirDialogEdicaoLucro(element.id)">Atualizar lucro</button>
-                    <button class="editar" (click)="abrirDialogEdicaoDescricao(element.id)">Atualizar Descricao</button>
-                    <button class="apagar" (click)="apagarInvestimento(element.id)">Apagar</button>
+                    <mat-form-field appearance="default">
+                        <mat-label>Ações</mat-label>
+                        <mat-select>
+                            <mat-option (click)="abrirDialogPorcentagem(element.id)">
+                                Mostrar porcentagem
+                            </mat-option>
+                            <mat-option (click)="abrirDialogEdicaoLucro(element.id)">
+                                Atualizar lucro
+                            </mat-option>
+                            <mat-option (click)="abrirDialogEdicaoDescricao(element.id)">
+                                Atualizar descricao
+                            </mat-option>
+                            <mat-option class="delete" (click)="apagarInvestimento(element.id)">
+                                Apagar
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </td>
             </ng-container>
-    
+
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
-</div>
+    </div>

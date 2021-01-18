@@ -7,6 +7,7 @@ import { DialogMontanteComponent } from 'src/app/components/dialog-montante/dial
 import { Usuario } from 'src/models/Usuario.model';
 import { DialogEdicaoRetiradaComponent } from 'src/app/components/dialog-edicao-retirada/dialog-edicao-retirada.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastService } from 'angular-toastify'
 
 @Component({
   selector: 'app-dashboard',
@@ -15,13 +16,12 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class DashboardComponent implements OnInit {
 
-  token = window.localStorage.getItem('94a08da1fecbb6e8b46990538c7b50b2');
+  token = window.localStorage.getItem('94a08da1fecbb6e8b46990538c7b50b2');  
   subject: any = JSON.parse(localStorage.getItem('email') || '');
   email: string = JSON.parse(this.subject).sub;
   usuario: Usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
   @Input() quantia: number = 0;
 
-  title = 'Dasboard';
   contas: any[] = [];
   retiradas: any[] = [];
   entradas: any[] = [];
@@ -36,7 +36,10 @@ export class DashboardComponent implements OnInit {
   displayedColumnsRetiradas: string[] = ['descricao', 'tipoGasto', 'quantia', 'acoes'];
   displayedColumnsEntradas: string[] = ['descricao', 'tipoEntrada', 'quantia', 'acoes'];
 
-  constructor(public dialog: MatDialog) {
+  constructor(
+    public dialog: MatDialog,
+    private toastService: ToastService
+    ) {
 
   }
 
@@ -64,8 +67,6 @@ export class DashboardComponent implements OnInit {
 
     this.labelsEntrada = listaFormato.map(mod => mod.tipo);
     this.dataEntrada = listaFormato.map(mod => mod.quantia);
-
-    console.log("lista formato: ", listaFormato);
   };
   fazerCalculosRetiradas(): void {
     let listinha: { tipo: string, quantia: number }[] = [];
@@ -98,7 +99,6 @@ export class DashboardComponent implements OnInit {
     }
     this.labels = listinha.map(mod => mod.tipo);
     this.data = listinha.map(mod => mod.quantia);
-    console.log("listinha: ", listinha);
   }
 
   abrirDialogEdicaoRetirada(_id: number): void {
@@ -117,9 +117,9 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(res => {
-      this.getRetiradas();
+      this.carregarDadosRetiradaConta();
       this.carregarDadosUsuario();
-      console.log("Dialog de Retirada fechado");
+
     })
   }
   abrirDialogConta(): void {
@@ -128,8 +128,8 @@ export class DashboardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(res => {
-      this.getContas();
-      console.log("Dialog fechado");
+      this.carregarDadosRetiradaConta();
+
     });
   }
 
@@ -140,16 +140,17 @@ export class DashboardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       this.carregarDadosUsuario();
-      console.log("dialog finalizado");
+      this.carregarEntradas();
+    
     })
   }
 
   async apagarConta(id: Number): Promise<void> {
     try {
       const response = await api.delete(`/contas/apagar/${id}`);
-      alert(response.data);
+      this.toastService.success(response.data);
     } catch (error) {
-      console.log(error);
+      this.toastService.error('Não foi possível apagar a conta');
     } finally {
       this.getContas();
     }
@@ -157,9 +158,9 @@ export class DashboardComponent implements OnInit {
   async apagarRetirada(id: Number): Promise<void> {
     try {
       const response = await api.delete(`/retiradas/apagar/${id}`);
-      alert(response.data);
+      this.toastService.success(response.data);
     } catch (error) {
-      console.log(error);
+      this.toastService.error("Não foi possível apagar a retirada");
     } finally {
       this.getRetiradas();
     }
@@ -168,10 +169,10 @@ export class DashboardComponent implements OnInit {
   async apagarEntrada(id:number) :Promise<void> {
     try {
       let response = await api.delete(`entradas/apagar/${id}`);
-      alert(response.data);
+      this.toastService.success(response.data);
       this.carregarEntradas();
     } catch (error) {
-      console.log(error);
+      this.toastService.error("Não foi possível apagar a entrada");
     }
   }
   async pagarConta(id: Number): Promise<void> {
@@ -181,9 +182,9 @@ export class DashboardComponent implements OnInit {
     }
     try {
       let response = await api.put(`/contas/pagar`, modeloConta);
-      console.log(response.data);
+      this.toastService.success(response.data);
     } catch (error) {
-      console.log(error);
+      this.toastService.error('Não foi possível pagar a conta indicada');
     } finally {
       this.carregarDadosUsuario();
       this.getContas();
@@ -193,10 +194,9 @@ export class DashboardComponent implements OnInit {
     try {
       let response = await api.post(`/usuarios/usuario/${this.email}`);
       this.usuario = response.data;
-      console.log('usuario: ', response.data)
       localStorage.setItem('usuario', JSON.stringify(this.usuario));
     } catch (error) {
-      console.log(error);
+      this.toastService.error('Os dados do úsuario não poderam ser carregados');
     }
   };
 
@@ -205,7 +205,7 @@ export class DashboardComponent implements OnInit {
       let response = await api.get(`/contas/${this.usuario.id}`)
       this.contas = response.data;
     } catch (error) {
-      console.log(error)
+      this.toastService.error('Não foi possível carregar os dados de contas');
     }
   };
 
@@ -213,10 +213,9 @@ export class DashboardComponent implements OnInit {
     let response;
     try {
       response = await api.get(`/retiradas/${this.usuario.id}`);
-      console.log(response.data);
       this.retiradas = response.data;
     } catch (error) {
-      console.log(error);
+      this.toastService.error('Não foi possível carregar os dados de retiradas');
     }
   };
 
@@ -224,10 +223,9 @@ export class DashboardComponent implements OnInit {
     try {
       let response = await api.get(`/entradas/${this.usuario.id}`);
       this.entradas = response.data;
-      console.log(response.data);
       this.fazerCalculosEntradas();
     } catch (error) {
-      console.log(error);
+      this.toastService.error('Não foi possível carregar os dados de entradas');
     }
   }
 
@@ -236,7 +234,7 @@ export class DashboardComponent implements OnInit {
       let response = await api.get('/tipo');
       this.tipos = response.data;
     } catch (error) {
-      console.log(error);
+      this.toastService.error('Não foi possível carregar os tipos de gastos');
     }
   };
 
@@ -245,7 +243,7 @@ export class DashboardComponent implements OnInit {
       let response = await api.get('/tipoEntrada');
       this.tiposEntrada = response.data;
     } catch (error) {
-      console.log(error);
+      this.toastService.error('Não foi possível carregar os tipos de entradas');
     }
   };
 
@@ -254,7 +252,7 @@ export class DashboardComponent implements OnInit {
       await this.getRetiradas();
       await this.getContas();
     } catch (error) {
-      console.log(error);
+      this.toastService.error('Não foi possível carregar os dados de contas/retiradas');
     } finally {
       this.fazerCalculosRetiradas();
     }
@@ -268,10 +266,13 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.carregarDadosUsuario();
-    this.carregarTipos();
-    this.carregarTiposEntrada();
-    this.carregarDadosRetiradaConta();
-    this.carregarEntradas();
+    setTimeout(res => {
+      this.carregarTipos();
+      this.carregarTiposEntrada();
+      this.carregarDadosRetiradaConta();
+      this.carregarEntradas();
+    }, 400)
+    
   }
 
 }

@@ -1,7 +1,7 @@
 <div class="container">
-    <img src="../../../assets/logo-alterdata.png" alt="Alterdata Software" routerLink="/">
-    <button class="btn-header" routerLink="/despesas">Despesas</button>
-    <button class="btn-header" routerLink="/investimentos">Investimentos</button>
-    <button class="btn-header" routerLink="/cotacao">Cotação</button>
-    <button (click)="logout()" class="btn-header">Sair</button>
+    <img src="../../../assets/logo-alterdata.png" alt="Alterdata Software" routerLink="/" (click)="handlePosition()">
+    <button class="btn despesas" routerLink="/despesas" (click)="handlePosition()">Despesas</button>
+    <button class="btn investimentos" routerLink="/investimentos" (click)="handlePosition()">Investimentos</button>
+    <button class="btn cotacao" routerLink="/cotacao" (click)="handlePosition()">Cotação</button>
+    <button (click)="logout()" class="btn">Sair</button>
 </div>

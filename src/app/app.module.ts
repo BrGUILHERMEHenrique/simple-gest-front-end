@@ -4,6 +4,7 @@ import { ChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { DialogEdicaoVariavelComponent } from './components/dialog-edicao-variav
 import { DialogEdicaoLucroInvestimentoComponent } from './components/dialog-edicao-lucro-investimento/dialog-edicao-lucro-investimento.component';
 import { DialogEdicaoDescricaoInvestimentoComponent } from './components/dialog-edicao-descricao-investimento/dialog-edicao-descricao-investimento.component';
 import { DialogPorcentagemComponent } from './components/dialog-porcentagem/dialog-porcentagem.component';
+import { AngularToastifyModule } from 'angular-toastify';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { DialogPorcentagemComponent } from './components/dialog-porcentagem/dial
     MatDatepickerModule,
     MatNativeDateModule,
     MatTableModule,
-    ChartsModule
+    MatSelectModule,
+    ChartsModule,
+    AngularToastifyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

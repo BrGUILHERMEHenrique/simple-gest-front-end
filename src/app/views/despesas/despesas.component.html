@@ -1,7 +1,7 @@
 <div class="container">
     <div class="fixas">
-        <h3>Despesas fixas</h3>
-        <button class="dialog-conta adicionar" (click)="abrirDialogDespesaFixa()">Adicionar nova conta</button>
+        <h2>Despesas fixas</h2>
+        <button class="dialog-conta adicionar" (click)="abrirDialogDespesaFixa()">Adicionar nova despesa fixa</button>
         <table mat-table [dataSource]="despesasFixas" class="mat-elevation-z8 table">
             <ng-container matColumnDef="descricao">
                 <th mat-header-cell *matHeaderCellDef> Descrição</th>
@@ -27,8 +27,8 @@
     </div>
 
     <div class="variaveis">
-        <h3>Despesas Variaveis</h3>
-        <button class="dialog-conta adicionar" (click)="abrirDialogDespesaVariavel()">Adicionar nova conta</button>
+        <h2>Despesas Variaveis</h2>
+        <button class="dialog-conta adicionar" (click)="abrirDialogDespesaVariavel()">Adicionar nova despesa variável</button>
         <table mat-table [dataSource]="despesasVariaveis" class="mat-elevation-z8 table">
             <ng-container matColumnDef="descricao">
                 <th mat-header-cell *matHeaderCellDef> Descrição</th>

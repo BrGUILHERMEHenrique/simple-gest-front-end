@@ -3,7 +3,7 @@
 .container {
     width : 100%;
     height: 100%;
-    color: #3a3a3a
+    color : #3a3a3a
 }
 
 .dados {
@@ -11,21 +11,31 @@
     height         : 100%;
     display        : flex;
     flex-direction : column;
-    flex-wrap      : wrap;
     align-items    : center;
     justify-content: center;
 }
 
-h1{
-    display: flex;
+.saudacao {
+    width          : 100%;
+    height         : 30%;
+    margin-top     : 2%;
+    margin-bottom  : 3%;
+    display        : flex;
+    flex-direction : row;
+    align-items    : center;
+    justify-content: space-evenly;
+
 }
-.contas, .retiradas, .entradas {
-    width: 100%;
-    height: 100%;
-}
-table {
-    width     : 100%;
-    margin-top: 10px;
+
+.contas,
+.retiradas,
+.entradas {
+    width          : 100%;
+    height         : 100%;
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+    justify-content: center;
 }
 
 .pagar {
@@ -50,6 +60,18 @@ table {
     margin-top: 50px;
 
     .conta {
+        background-color: rgba(0, 0, 0, 0.1);
+        margin-top      : 5px;
+        width           : 100%;
+        height          : 20px;
+    }
+}
+
+.entradas {
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    .entrada {
         background-color: rgba(0, 0, 0, 0.1);
         margin-top      : 5px;
         width           : 100%;
